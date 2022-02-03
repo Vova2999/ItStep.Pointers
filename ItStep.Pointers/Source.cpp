@@ -334,7 +334,37 @@ void Task15() {
 
 #pragma region Task 16
 
+void RemoveRow(int**& arr, int& rows, int index) {
+	int** newArr = new int* [--rows];
 
+	for (int i = 0; i < index; i++)
+		newArr[i] = arr[i];
+	for (int i = index + 1; i <= rows; i++)
+		newArr[i - 1] = arr[i];
+
+	delete[] arr;
+	arr = newArr;
+}
+
+void Task16() {
+	int rows, columns;
+	cin >> rows >> columns;
+
+	int** arr = new int* [rows];
+	for (int i = 0; i < rows; i++)
+		arr[i] = new int[columns];
+
+	FillArray(arr, rows, columns, 0, 9);
+
+	PrintArray(arr, rows, columns);
+
+	int index;
+	cin >> index;
+
+	RemoveRow(arr, rows, index);
+
+	PrintArray(arr, rows, columns);
+}
 
 #pragma endregion
 
@@ -348,7 +378,8 @@ void main() {
 	//Task12();
 	//Task13();
 	//Task14();
-	Task15();
+	//Task15();
+	Task16();
 
 	system("pause");
 }
