@@ -96,7 +96,7 @@ void Task7() {
 	int N, M;
 	cin >> N >> M;
 
-	int** arr = new int* [N];
+	int** arr = new int*[N];
 	for (int i = 0; i < N; i++)
 		arr[i] = new int[M];
 
@@ -126,7 +126,7 @@ void RecreateArrayAndAdd1Item(int** arr, int* size) {
 		newArr[i] = (*arr)[i];
 
 	(*size)++;
-	delete[] * arr;
+	delete[] *arr;
 	*arr = newArr;
 }
 
@@ -184,7 +184,7 @@ int** ConvertTo2D(int* arr, int size, int rows, int columns) {
 	if (size != rows * columns)
 		return nullptr;
 
-	int** resultArray = new int* [rows];
+	int** resultArray = new int*[rows];
 	for (int i = 0; i < rows; i++)
 		resultArray[i] = new int[columns];
 
@@ -231,7 +231,7 @@ void Task12() {
 #pragma region Task 13
 
 void AddLastRow(int**& arr, int& rows, int columns) {
-	int** newArr = new int* [rows + 1];
+	int** newArr = new int*[rows + 1];
 
 	for (int i = 0; i < rows; i++)
 		newArr[i] = arr[i];
@@ -245,7 +245,7 @@ void Task13() {
 	int rows, columns;
 	cin >> rows >> columns;
 
-	int** arr = new int* [rows];
+	int** arr = new int*[rows];
 	for (int i = 0; i < rows; i++)
 		arr[i] = new int[columns];
 
@@ -264,7 +264,7 @@ void Task13() {
 #pragma region Task 14
 
 void AddFirstRow(int**& arr, int& rows, int columns) {
-	int** newArr = new int* [++rows];
+	int** newArr = new int*[++rows];
 
 	for (int i = 1; i < rows; i++)
 		newArr[i] = arr[i - 1];
@@ -278,7 +278,7 @@ void Task14() {
 	int rows, columns;
 	cin >> rows >> columns;
 
-	int** arr = new int* [rows];
+	int** arr = new int*[rows];
 	for (int i = 0; i < rows; i++)
 		arr[i] = new int[columns];
 
@@ -297,7 +297,7 @@ void Task14() {
 #pragma region Task 15
 
 void AddRow(int**& arr, int& rows, int columns, int index) {
-	int** newArr = new int* [++rows];
+	int** newArr = new int*[++rows];
 
 	for (int i = 0; i < index; i++)
 		newArr[i] = arr[i];
@@ -313,7 +313,7 @@ void Task15() {
 	int rows, columns;
 	cin >> rows >> columns;
 
-	int** arr = new int* [rows];
+	int** arr = new int*[rows];
 	for (int i = 0; i < rows; i++)
 		arr[i] = new int[columns];
 
@@ -335,7 +335,7 @@ void Task15() {
 #pragma region Task 16
 
 void RemoveRow(int**& arr, int& rows, int index) {
-	int** newArr = new int* [--rows];
+	int** newArr = new int*[--rows];
 
 	for (int i = 0; i < index; i++)
 		newArr[i] = arr[i];
@@ -350,7 +350,7 @@ void Task16() {
 	int rows, columns;
 	cin >> rows >> columns;
 
-	int** arr = new int* [rows];
+	int** arr = new int*[rows];
 	for (int i = 0; i < rows; i++)
 		arr[i] = new int[columns];
 
@@ -379,7 +379,7 @@ void main() {
 	//Task13();
 	//Task14();
 	//Task15();
-	Task16();
+	//Task16();
 
 	system("pause");
 }
