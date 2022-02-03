@@ -230,7 +230,7 @@ void Task12() {
 
 #pragma region Task 13
 
-void AddRow(int**& arr, int& rows, int columns) {
+void AddLastRow(int**& arr, int& rows, int columns) {
 	int** newArr = new int* [rows + 1];
 
 	for (int i = 0; i < rows; i++)
@@ -253,11 +253,88 @@ void Task13() {
 
 	PrintArray(arr, rows, columns);
 
-	AddRow(arr, rows, columns);
+	AddLastRow(arr, rows, columns);
 	FillArray(arr[rows - 1], columns, 0, 9);
 
 	PrintArray(arr, rows, columns);
 }
+
+#pragma endregion
+
+#pragma region Task 14
+
+void AddFirstRow(int**& arr, int& rows, int columns) {
+	int** newArr = new int* [++rows];
+
+	for (int i = 1; i < rows; i++)
+		newArr[i] = arr[i - 1];
+	newArr[0] = new int[columns];
+
+	delete[] arr;
+	arr = newArr;
+}
+
+void Task14() {
+	int rows, columns;
+	cin >> rows >> columns;
+
+	int** arr = new int* [rows];
+	for (int i = 0; i < rows; i++)
+		arr[i] = new int[columns];
+
+	FillArray(arr, rows, columns, 0, 9);
+
+	PrintArray(arr, rows, columns);
+
+	AddFirstRow(arr, rows, columns);
+	FillArray(arr[0], columns, 0, 9);
+
+	PrintArray(arr, rows, columns);
+}
+
+#pragma endregion
+
+#pragma region Task 15
+
+void AddRow(int**& arr, int& rows, int columns, int index) {
+	int** newArr = new int* [++rows];
+
+	for (int i = 0; i < index; i++)
+		newArr[i] = arr[i];
+	newArr[index] = new int[columns];
+	for (int i = index + 1; i < rows; i++)
+		newArr[i] = arr[i - 1];
+
+	delete[] arr;
+	arr = newArr;
+}
+
+void Task15() {
+	int rows, columns;
+	cin >> rows >> columns;
+
+	int** arr = new int* [rows];
+	for (int i = 0; i < rows; i++)
+		arr[i] = new int[columns];
+
+	FillArray(arr, rows, columns, 0, 9);
+
+	PrintArray(arr, rows, columns);
+
+	int index;
+	cin >> index;
+
+	AddRow(arr, rows, columns, index);
+	FillArray(arr[index], columns, 0, 9);
+
+	PrintArray(arr, rows, columns);
+}
+
+#pragma endregion
+
+#pragma region Task 16
+
+
 
 #pragma endregion
 
@@ -269,7 +346,9 @@ void main() {
 	//Task11();
 	//Task11_2();
 	//Task12();
-	Task13();
+	//Task13();
+	//Task14();
+	Task15();
 
 	system("pause");
 }
