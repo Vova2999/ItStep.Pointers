@@ -445,8 +445,40 @@ void Task18() {
 
 #pragma region Task 19
 
-void Task19() {
+void AddColumn(int**& arr, int rows, int& columns, int index) {
+	for (int i = 0; i < rows; i++) {
+		int* newArr = new int[columns + 1];
+		for (int j = 0; j < index; j++)
+			newArr[j] = arr[i][j];
+		for (int j = index + 1; j <= columns; j++)
+			newArr[j] = arr[i][j - 1];
 
+		delete[] arr[i];
+		arr[i] = newArr;
+	}
+
+	columns++;
+}
+
+void Task19() {
+	int rows, columns;
+	cin >> rows >> columns;
+
+	int** arr = new int* [rows];
+	for (int i = 0; i < rows; i++)
+		arr[i] = new int[columns];
+
+	FillArray(arr, rows, columns, 0, 9);
+
+	PrintArray(arr, rows, columns);
+
+	int index;
+	cin >> index;
+
+	AddColumn(arr, rows, columns, index);
+	FillArrayColumn(arr, rows, index, 0, 9);
+
+	PrintArray(arr, rows, columns);
 }
 
 #pragma endregion
@@ -480,7 +512,8 @@ void main() {
 	//Task15();
 	//Task16();
 	//Task17();
-	Task18();
+	//Task18();
+	Task19();
 
 	system("pause");
 }
