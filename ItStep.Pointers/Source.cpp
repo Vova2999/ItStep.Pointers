@@ -580,6 +580,64 @@ void Task22() {
 
 #pragma endregion
 
+#pragma region Task 23
+
+int** MulMatrix(int** arr1, int rows1, int columns1, int** arr2, int rows2, int columns2, int* resultRows, int* resultColumns) {
+	if (columns1 != rows2)
+		return nullptr;
+
+	*resultRows = rows1;
+	*resultColumns = columns2;
+
+	int** resultArr = new int*[*resultRows];
+	for (int i = 0; i < *resultRows; i++) {
+		resultArr[i] = new int[*resultColumns];
+		for (int j = 0; j < *resultColumns; j++) {
+			resultArr[i][j] = 0;
+			for (int k = 0; k < rows2; k++)
+				resultArr[i][j] += arr1[i][k] * arr2[k][j];
+		}
+	}
+
+	return resultArr;
+}
+
+void Task23() {
+	int rows1, columns1;
+	cin >> rows1 >> columns1;
+
+	int** arr1 = new int*[rows1];
+	for (int i = 0; i < rows1; i++)
+		arr1[i] = new int[columns1];
+
+	FillArray(arr1, rows1, columns1, 0, 9);
+
+	PrintArray(arr1, rows1, columns1);
+
+	int rows2, columns2;
+	cin >> rows2 >> columns2;
+
+	int** arr2 = new int*[rows2];
+	for (int i = 0; i < rows2; i++)
+		arr2[i] = new int[columns2];
+
+	FillArray(arr2, rows2, columns2, 0, 9);
+
+	PrintArray(arr2, rows2, columns2);
+
+	int resultRows, resultColumns;
+	int** resultArr = MulMatrix(arr1, rows1, columns1, arr2, rows2, columns2, &resultRows, &resultColumns);
+
+	if (resultArr == nullptr) {
+		cout << "Invalid sizes" << endl;
+		return;
+	}
+
+	PrintArray(resultArr, resultRows, resultColumns);
+}
+
+#pragma endregion
+
 void main() {
 	srand(time(0));
 
@@ -597,7 +655,8 @@ void main() {
 	//Task19();
 	//Task20();
 	//Task21();
-	Task22();
+	//Task22();
+	Task23();
 
 	system("pause");
 }
