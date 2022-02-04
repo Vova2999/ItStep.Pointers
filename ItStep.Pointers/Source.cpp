@@ -33,6 +33,11 @@ void FillArray(int** arr, int rows, int columns, int min, int max) {
 		FillArray(arr[i], columns, min, max);
 }
 
+void FillArrayColumn(int** arr, int rows, int columnIndex, int min, int max) {
+	for (int i = 0; i < rows; i++)
+		arr[i][columnIndex] = rand() % (max - min + 1) + min;
+}
+
 bool TryGetPositive(int* value) {
 	cin >> *value;
 	return *value >= 0;
@@ -368,6 +373,73 @@ void Task16() {
 
 #pragma endregion
 
+#pragma region Task 17
+
+void AddLastColumn(int**& arr, int rows, int& columns) {
+	for (int i = 0; i < rows; i++) {
+		int* newArr = new int[columns + 1];
+		for (int j = 0; j < columns; j++)
+			newArr[j] = arr[i][j];
+
+		delete[] arr[i];
+		arr[i] = newArr;
+	}
+
+	columns++;
+}
+
+void Task17() {
+	int rows, columns;
+	cin >> rows >> columns;
+
+	int** arr = new int* [rows];
+	for (int i = 0; i < rows; i++)
+		arr[i] = new int[columns];
+
+	FillArray(arr, rows, columns, 0, 9);
+
+	PrintArray(arr, rows, columns);
+
+	AddLastColumn(arr, rows, columns);
+	FillArrayColumn(arr, rows, columns - 1, 0, 9);
+
+	PrintArray(arr, rows, columns);
+}
+
+#pragma endregion
+
+#pragma region Task 18
+
+void Task18() {
+
+}
+
+#pragma endregion
+
+#pragma region Task 19
+
+void Task19() {
+
+}
+
+#pragma endregion
+
+#pragma region Task 20
+
+void Task20() {
+
+}
+
+#pragma endregion
+
+#pragma region Task 21
+
+void Task21() {
+
+}
+
+#pragma endregion
+
 void main() {
 	srand(time(0));
 
@@ -380,6 +452,7 @@ void main() {
 	//Task14();
 	//Task15();
 	//Task16();
+	Task17();
 
 	system("pause");
 }
