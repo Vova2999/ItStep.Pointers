@@ -536,7 +536,7 @@ void Task21() {
 	int rows, columns;
 	cin >> rows >> columns;
 
-	int** arr = new int* [rows];
+	int** arr = new int*[rows];
 	for (int i = 0; i < rows; i++)
 		arr[i] = new int[columns];
 
@@ -549,6 +549,33 @@ void Task21() {
 			RemoveRow(arr, rows, i--);
 
 	PrintArray(arr, rows, columns);
+}
+
+#pragma endregion
+
+#pragma region Task 22
+
+int GetMatrixTrace(int** arr, int rows, int columns) {
+	int sum = 0, size = Min(rows, columns);
+	for (int i = 0; i < size; i++)
+		sum += arr[i][i];
+
+	return sum;
+}
+
+void Task22() {
+	int rows, columns;
+	cin >> rows >> columns;
+
+	int** arr = new int*[rows];
+	for (int i = 0; i < rows; i++)
+		arr[i] = new int[columns];
+
+	FillArray(arr, rows, columns, 0, 9);
+
+	PrintArray(arr, rows, columns);
+
+	cout << "Matrix trace = " << GetMatrixTrace(arr, rows, columns) << endl;
 }
 
 #pragma endregion
@@ -569,7 +596,8 @@ void main() {
 	//Task18();
 	//Task19();
 	//Task20();
-	Task21();
+	//Task21();
+	Task22();
 
 	system("pause");
 }
