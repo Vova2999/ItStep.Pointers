@@ -38,6 +38,13 @@ void FillArrayColumn(int** arr, int rows, int columnIndex, int min, int max) {
 		arr[i][columnIndex] = rand() % (max - min + 1) + min;
 }
 
+bool IsContains(int* arr, int size, int value) {
+	for (int i = 0; i < size; i++)
+		if (arr[i] == value)
+			return true;
+	return false;
+}
+
 bool TryGetPositive(int* value) {
 	cin >> *value;
 	return *value >= 0;
@@ -526,7 +533,22 @@ void Task20() {
 #pragma region Task 21
 
 void Task21() {
+	int rows, columns;
+	cin >> rows >> columns;
 
+	int** arr = new int* [rows];
+	for (int i = 0; i < rows; i++)
+		arr[i] = new int[columns];
+
+	FillArray(arr, rows, columns, 0, 9);
+
+	PrintArray(arr, rows, columns);
+
+	for (int i = 0; i < rows; i++)
+		if (IsContains(arr[i], columns, 0))
+			RemoveRow(arr, rows, i--);
+
+	PrintArray(arr, rows, columns);
 }
 
 #pragma endregion
@@ -546,7 +568,8 @@ void main() {
 	//Task17();
 	//Task18();
 	//Task19();
-	Task20();
+	//Task20();
+	Task21();
 
 	system("pause");
 }
