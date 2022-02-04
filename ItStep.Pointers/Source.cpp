@@ -392,7 +392,7 @@ void Task17() {
 	int rows, columns;
 	cin >> rows >> columns;
 
-	int** arr = new int* [rows];
+	int** arr = new int*[rows];
 	for (int i = 0; i < rows; i++)
 		arr[i] = new int[columns];
 
@@ -427,7 +427,7 @@ void Task18() {
 	int rows, columns;
 	cin >> rows >> columns;
 
-	int** arr = new int* [rows];
+	int** arr = new int*[rows];
 	for (int i = 0; i < rows; i++)
 		arr[i] = new int[columns];
 
@@ -464,7 +464,7 @@ void Task19() {
 	int rows, columns;
 	cin >> rows >> columns;
 
-	int** arr = new int* [rows];
+	int** arr = new int*[rows];
 	for (int i = 0; i < rows; i++)
 		arr[i] = new int[columns];
 
@@ -485,8 +485,40 @@ void Task19() {
 
 #pragma region Task 20
 
-void Task20() {
+void RemoveColumn(int**& arr, int rows, int& columns, int index) {
+	for (int i = 0; i < rows; i++) {
+		int* newArr = new int[columns - 1];
+		for (int j = 0; j < index; j++)
+			newArr[j] = arr[i][j];
 
+		for (int j = index + 1; j < columns; j++)
+			newArr[j - 1] = arr[i][j];
+
+		delete[] arr[i];
+		arr[i] = newArr;
+	}
+
+	columns--;
+}
+
+void Task20() {
+	int rows, columns;
+	cin >> rows >> columns;
+
+	int** arr = new int*[rows];
+	for (int i = 0; i < rows; i++)
+		arr[i] = new int[columns];
+
+	FillArray(arr, rows, columns, 0, 9);
+
+	PrintArray(arr, rows, columns);
+
+	int index;
+	cin >> index;
+
+	RemoveColumn(arr, rows, columns, index);
+
+	PrintArray(arr, rows, columns);
 }
 
 #pragma endregion
@@ -513,7 +545,8 @@ void main() {
 	//Task16();
 	//Task17();
 	//Task18();
-	Task19();
+	//Task19();
+	Task20();
 
 	system("pause");
 }
